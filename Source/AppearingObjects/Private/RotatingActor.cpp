@@ -23,13 +23,11 @@ void ARotatingActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FRotator NewRotation = GetActorRotation();
-	float DeltaRotation = (360.0f / CycleInSeconds) * DeltaTime;
+	FQuat CurrentQuatRotation = FQuat(GetActorRotation());
 
-	// Log current actor rotation.
-	UE_LOG(LogTemp, Warning, TEXT("Actor Rotation: %s"), *NewRotation.ToString());
+	float DeltaRotation = (DeltaTime / CycleInSeconds) * 2 * PI;
+	FQuat NewQuatRotation = FQuat(FVector(0, 1, 0), DeltaRotation);
 
-	NewRotation.Pitch += DeltaRotation;
-	SetActorRotation(NewRotation);
+	AddActorLocalRotation(NewQuatRotation);
 }
 

@@ -14,7 +14,9 @@ class APPEARINGOBJECTS_API ARotatingActor : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ARotatingActor();
-	float CycleInSeconds = 600.0f;
+
+	UPROPERTY(EditAnywhere, Category="Actor Variables")
+	float CycleInSeconds = 30.0f;
 
 protected:
 	// Called when the game starts or when spawned
